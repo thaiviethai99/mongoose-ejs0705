@@ -35,9 +35,8 @@ if (process.env.NODE_ENV !== 'production') {
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    // res.render('singers', { singers });
     Singer.find({})
-    .then(singers => res.send(singers));
+    .then(singers => res.render('singers', { singers }));
 });
 
 app.get('/add', (req, res) => res.render('create'));
