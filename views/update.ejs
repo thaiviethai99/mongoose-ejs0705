@@ -14,7 +14,7 @@
     <div class="container">
         <a href="/singers">Show all singers</a>
         <h1>Update Singer <%= singer.name %></h1>
-        <form action="/update/<%= singer.id %>" method="post" class="form-group">
+        <form action="/update/<%= singer._id %>" method="post" class="form-group">
             <div class="form-group">
                 <label for="">Name</label>
                 <input type="text" class="form-control" name="name" value="<%= singer.name %>">

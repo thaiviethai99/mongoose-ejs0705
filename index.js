@@ -42,31 +42,40 @@ app.get('/', (req, res) => {
 app.get('/add', (req, res) => res.render('create'));
 
 app.post('/add', (req, res) => {
-    // const { name, image, link } = req.body;
-    // res.send(req.body);
+    const { name, image, link } = req.body;
+    const singer = new Singer({ name, link, image });
+    singer.save()
+    .then(s => res.redirect('/'))
+    .catch(error => res.send(error.message));
 });
 
 app.get('/update/:_id', (req, res) => {
-    // const singer = singers.find(s => s.id === req.params.id);
-    // if (!singer) return res.send('Khong tim thay singer');
-    // res.render('update', { singer });
+    Singer.findById(req.params._id)
+    .then(singer => {
+        if (!singer) throw new Error('Cannot find singer');
+        res.render('update', { singer });
+    })
+    .catch(error => res.send(error.message));
 });
 
 app.post('/update/:_id', (req, res) => {
-    // const singer = singers.find(s => s.id === req.params.id);
-    // if (!singer) return res.send('Khong tim thay singer');
-    // const { name, link, image } = req.body;
-    // singer.name = name;
-    // singer.image = image;
-    // singer.link = link;
-    // res.redirect('/singers');
+    const { name, image, link } = req.body;
+    Singer.findByIdAndUpdate(req.params._id, { name, link, image })
+    .then(singer => {
+        if (!singer) throw new Error('Cannot find singer');
+        res.redirect('/');
+    })
+    .catch(error => res.send(error.message));  
 });
 
 app.get('/remove/:_id', (req, res) => {
-    // const index = singers.findIndex(singer => singer.id === req.params.id);
-    // if (index === -1) return res.send('Khong tim thay singer');
-    // singers.splice(index, 1);
-    // res.redirect('/singers');
+    const { _id } = req.params;
+    Singer.findByIdAndRemove(_id)
+    .then(singer => {
+        if (!singer) throw new Error('Cannot find singer');
+        res.redirect('/');
+    })
+    .catch(error => res.send(error.message));
 });
 
 app.listen(process.env.PORT || 3000, () => console.log('Server started'));
