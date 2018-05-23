@@ -1,0 +1,21 @@
+{
+  "name": "express0705",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/vanpho93/express0705.git",
+  "author": "Van Pho Nguyen <vanpho02@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.2"
+  },
+  "devDependencies": {
+    "reload": "^2.2.2"
+  },
+  "scripts": {
+    "server": "nodemon index.js -e js,ejs,css,html",
+    "start": "node index.js"
+  }
+}

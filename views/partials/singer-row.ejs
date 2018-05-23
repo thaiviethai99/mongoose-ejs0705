@@ -1,0 +1,11 @@
+<tr>
+    <td><%= index + 1 %></td>
+    <td style="color: <%= singer.isFamous ? 'green' : 'red' %>"><%= singer.name %></td>
+    <td><img src="<%= singer.image %>" alt=""></td>
+    <td><a href="<%= singer.link %>"><%= singer.name %></a></td>
+    <td>
+        <a href="/remove/<%= singer.id %>">Remove</a>
+        <br>
+        <a href="/update/<%= singer.id %>">Update</a>
+    </td>
+</tr>
